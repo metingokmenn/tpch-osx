@@ -1,0 +1,138 @@
+--- DETAYLI PERFORMANS & FEATURE LOGU (18:57:37) ---
+
+--- QUERY #1 [SELECT] ---
+SQL: -- QUERY: Q1 (Agg)
+        SELECT l_returnflag, l_linestatus, sum(l_quantity) as sum_qty,
+          ... 
+⏱️  Süre (Time): 1208.31 ms
+💰 Maliyet (Cost): 230305.36
+🔍 Erişim Yöntemi: Aggregate -> Gather Merge
+📅 Filtre Aralığı (Gün): 2398
+🔗 Join Sayısı: 0
+📊 Tablo İstatistikleri:
+   - lineitem: 6,001,009 satır (Kardinalite) | Boyut: 1006 MB
+============================================================
+
+--- QUERY #2 [SELECT] ---
+SQL: -- QUERY: Q6 (Scan)
+        SELECT sum(l_extendedprice * l_discount) as revenue
+        FROM lineite... 
+⏱️  Süre (Time): 124.23 ms
+💰 Maliyet (Cost): 169776.0
+🔍 Erişim Yöntemi: Aggregate -> Gather
+📅 Filtre Aralığı (Gün): 365
+🔗 Join Sayısı: 0
+📊 Tablo İstatistikleri:
+   - lineitem: 6,001,009 satır (Kardinalite) | Boyut: 1006 MB
+============================================================
+
+--- QUERY #3 [SELECT] ---
+SQL: -- QUERY: Q6 (Scan)
+        SELECT sum(l_extendedprice * l_discount) as revenue
+        FROM lineite... 
+⏱️  Süre (Time): 122.42 ms
+💰 Maliyet (Cost): 169731.49
+🔍 Erişim Yöntemi: Aggregate -> Gather
+📅 Filtre Aralığı (Gün): 365
+🔗 Join Sayısı: 0
+📊 Tablo İstatistikleri:
+   - lineitem: 6,001,009 satır (Kardinalite) | Boyut: 1006 MB
+============================================================
+
+--- QUERY #4 [SELECT] ---
+SQL: -- QUERY: Q1 (Agg)
+        SELECT l_returnflag, l_linestatus, sum(l_quantity) as sum_qty,
+          ... 
+⏱️  Süre (Time): 861.75 ms
+💰 Maliyet (Cost): 231167.27
+🔍 Erişim Yöntemi: Aggregate -> Gather Merge
+📅 Filtre Aralığı (Gün): 2427
+🔗 Join Sayısı: 0
+📊 Tablo İstatistikleri:
+   - lineitem: 6,001,009 satır (Kardinalite) | Boyut: 1006 MB
+============================================================
+
+--- QUERY #5 [SELECT] ---
+SQL: -- QUERY: Q6 (Scan)
+        SELECT sum(l_extendedprice * l_discount) as revenue
+        FROM lineite... 
+⏱️  Süre (Time): 116.08 ms
+💰 Maliyet (Cost): 169779.51
+🔍 Erişim Yöntemi: Aggregate -> Gather
+📅 Filtre Aralığı (Gün): 365
+🔗 Join Sayısı: 0
+📊 Tablo İstatistikleri:
+   - lineitem: 6,001,009 satır (Kardinalite) | Boyut: 1006 MB
+============================================================
+
+--- QUERY #6 [SELECT] ---
+SQL: -- QUERY: Q3 (Join Heavy)
+        SELECT
+            l_orderkey,
+            sum(l_extendedprice * (... 
+⏱️  Süre (Time): 634.87 ms
+💰 Maliyet (Cost): 193173.5
+🔍 Erişim Yöntemi: Limit -> Sort
+📅 Filtre Aralığı (Gün): 0
+🔗 Join Sayısı: 2
+📊 Tablo İstatistikleri:
+   - customer: 150,000 satır (Kardinalite) | Boyut: 31 MB
+   - orders: 1,500,000 satır (Kardinalite) | Boyut: 236 MB
+   - lineitem: 6,001,009 satır (Kardinalite) | Boyut: 1006 MB
+============================================================
+
+--- QUERY #7 [SELECT] ---
+SQL: -- QUERY: Q6 (Scan)
+        SELECT sum(l_extendedprice * l_discount) as revenue
+        FROM lineite... 
+⏱️  Süre (Time): 155.01 ms
+💰 Maliyet (Cost): 169813.75
+🔍 Erişim Yöntemi: Aggregate -> Gather
+📅 Filtre Aralığı (Gün): 365
+🔗 Join Sayısı: 0
+📊 Tablo İstatistikleri:
+   - lineitem: 6,001,009 satır (Kardinalite) | Boyut: 1006 MB
+============================================================
+
+--- QUERY #8 [UPDATE] ---
+SQL: -- QUERY: UPDATE
+        UPDATE lineitem
+        SET l_quantity = l_quantity
+        WHERE l_orderke... 
+⏱️  Süre (Time): 0.92 ms
+💰 Maliyet (Cost): 0
+🔍 Erişim Yöntemi: UPDATE (Heap Scan)
+📅 Filtre Aralığı (Gün): 0
+🔗 Join Sayısı: 0
+📊 Tablo İstatistikleri:
+   - lineitem: 6,001,009 satır (Kardinalite) | Boyut: 1006 MB
+============================================================
+
+--- QUERY #9 [UPDATE] ---
+SQL: -- QUERY: UPDATE
+        UPDATE lineitem
+        SET l_quantity = l_quantity
+        WHERE l_orderke... 
+⏱️  Süre (Time): 0.95 ms
+💰 Maliyet (Cost): 0
+🔍 Erişim Yöntemi: UPDATE (Heap Scan)
+📅 Filtre Aralığı (Gün): 0
+🔗 Join Sayısı: 0
+📊 Tablo İstatistikleri:
+   - lineitem: 6,001,009 satır (Kardinalite) | Boyut: 1006 MB
+============================================================
+
+--- QUERY #10 [UPDATE] ---
+SQL: -- QUERY: UPDATE
+        UPDATE lineitem
+        SET l_quantity = l_quantity
+        WHERE l_orderke... 
+⏱️  Süre (Time): 0.13 ms
+💰 Maliyet (Cost): 0
+🔍 Erişim Yöntemi: UPDATE (Heap Scan)
+📅 Filtre Aralığı (Gün): 0
+🔗 Join Sayısı: 0
+📊 Tablo İstatistikleri:
+   - lineitem: 6,001,009 satır (Kardinalite) | Boyut: 1006 MB
+============================================================
+

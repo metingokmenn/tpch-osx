@@ -1,0 +1,194 @@
+PROJE EXECUTION LOG - 2025-12-08 18:58
+
+--- Set 1 (5 SELECT + 5 DML) | Query #1 [SELECT] ---
+SQL: SELECT l_returnflag, l_linestatus, sum(l_quantity) as sum_qty, sum(l_extendedprice) as sum_base_price, sum(l_extendedprice * (1 - l_discount)) as sum_... 
+📊 Stats: Time=1087.10ms | Cost=230810.62 | Method=Aggregate -> Gather Merge
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 1 (5 SELECT + 5 DML) | Query #2 [SELECT] ---
+SQL: SELECT l_returnflag, l_linestatus, sum(l_quantity) as sum_qty, sum(l_extendedprice) as sum_base_price, sum(l_extendedprice * (1 - l_discount)) as sum_... 
+📊 Stats: Time=823.74ms | Cost=230988.95 | Method=Aggregate -> Gather Merge
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 1 (5 SELECT + 5 DML) | Query #3 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 38394 AND l_linenumber = 2;... 
+📊 Stats: Time=0.45ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 1 (5 SELECT + 5 DML) | Query #4 [SELECT] ---
+SQL: SELECT l_returnflag, l_linestatus, sum(l_quantity) as sum_qty, sum(l_extendedprice) as sum_base_price, sum(l_extendedprice * (1 - l_discount)) as sum_... 
+📊 Stats: Time=827.28ms | Cost=230064.04 | Method=Aggregate -> Gather Merge
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 1 (5 SELECT + 5 DML) | Query #5 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 107737 AND l_linenumber = 2;... 
+📊 Stats: Time=0.50ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 1 (5 SELECT + 5 DML) | Query #6 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 1198597 AND l_linenumber = 4;... 
+📊 Stats: Time=0.63ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 1 (5 SELECT + 5 DML) | Query #7 [SELECT] ---
+SQL: SELECT l_orderkey, sum(l_extendedprice * (1 - l_discount)) as revenue, o_orderdate, o_shippriority FROM customer, orders, lineitem WHERE c_mktsegment ... 
+📊 Stats: Time=488.16ms | Cost=197829.75 | Method=Limit -> Sort
+ℹ️  Meta: Tables=['customer', 'orders', 'lineitem'] | JoinCount=2
+   -> customer: 150,000 rows, 31 MB
+   -> orders: 1,500,000 rows, 236 MB
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 1 (5 SELECT + 5 DML) | Query #8 [SELECT] ---
+SQL: SELECT l_returnflag, l_linestatus, sum(l_quantity) as sum_qty, sum(l_extendedprice) as sum_base_price, sum(l_extendedprice * (1 - l_discount)) as sum_... 
+📊 Stats: Time=837.26ms | Cost=230029.56 | Method=Aggregate -> Gather Merge
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 1 (5 SELECT + 5 DML) | Query #9 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 144648 AND l_linenumber = 1;... 
+📊 Stats: Time=0.15ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 1 (5 SELECT + 5 DML) | Query #10 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 85138 AND l_linenumber = 1;... 
+📊 Stats: Time=0.13ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 2 (10 SELECT) | Query #1 [SELECT] ---
+SQL: SELECT l_orderkey, sum(l_extendedprice * (1 - l_discount)) as revenue, o_orderdate, o_shippriority FROM customer, orders, lineitem WHERE c_mktsegment ... 
+📊 Stats: Time=163.61ms | Cost=195555.47 | Method=Limit -> Sort
+ℹ️  Meta: Tables=['customer', 'orders', 'lineitem'] | JoinCount=2
+   -> customer: 150,000 rows, 31 MB
+   -> orders: 1,500,000 rows, 236 MB
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 2 (10 SELECT) | Query #2 [SELECT] ---
+SQL: SELECT sum(l_extendedprice * l_discount) as revenue FROM lineitem WHERE l_shipdate >= DATE '1994-07-23' AND l_shipdate < DATE '1994-07-23' + INTERVAL ... 
+📊 Stats: Time=126.09ms | Cost=169793.18 | Method=Aggregate -> Gather
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 2 (10 SELECT) | Query #3 [SELECT] ---
+SQL: SELECT sum(l_extendedprice * l_discount) as revenue FROM lineitem WHERE l_shipdate >= DATE '1996-06-19' AND l_shipdate < DATE '1996-06-19' + INTERVAL ... 
+📊 Stats: Time=118.98ms | Cost=169806.89 | Method=Aggregate -> Gather
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 2 (10 SELECT) | Query #4 [SELECT] ---
+SQL: SELECT l_returnflag, l_linestatus, sum(l_quantity) as sum_qty, sum(l_extendedprice) as sum_base_price, sum(l_extendedprice * (1 - l_discount)) as sum_... 
+📊 Stats: Time=846.37ms | Cost=230751.16 | Method=Aggregate -> Gather Merge
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 2 (10 SELECT) | Query #5 [SELECT] ---
+SQL: SELECT l_orderkey, sum(l_extendedprice * (1 - l_discount)) as revenue, o_orderdate, o_shippriority FROM customer, orders, lineitem WHERE c_mktsegment ... 
+📊 Stats: Time=162.99ms | Cost=199349.78 | Method=Limit -> Sort
+ℹ️  Meta: Tables=['customer', 'orders', 'lineitem'] | JoinCount=2
+   -> customer: 150,000 rows, 31 MB
+   -> orders: 1,500,000 rows, 236 MB
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 2 (10 SELECT) | Query #6 [SELECT] ---
+SQL: SELECT l_orderkey, sum(l_extendedprice * (1 - l_discount)) as revenue, o_orderdate, o_shippriority FROM customer, orders, lineitem WHERE c_mktsegment ... 
+📊 Stats: Time=161.59ms | Cost=194219.06 | Method=Limit -> Sort
+ℹ️  Meta: Tables=['customer', 'orders', 'lineitem'] | JoinCount=2
+   -> customer: 150,000 rows, 31 MB
+   -> orders: 1,500,000 rows, 236 MB
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 2 (10 SELECT) | Query #7 [SELECT] ---
+SQL: SELECT l_orderkey, sum(l_extendedprice * (1 - l_discount)) as revenue, o_orderdate, o_shippriority FROM customer, orders, lineitem WHERE c_mktsegment ... 
+📊 Stats: Time=157.32ms | Cost=197829.75 | Method=Limit -> Sort
+ℹ️  Meta: Tables=['customer', 'orders', 'lineitem'] | JoinCount=2
+   -> customer: 150,000 rows, 31 MB
+   -> orders: 1,500,000 rows, 236 MB
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 2 (10 SELECT) | Query #8 [SELECT] ---
+SQL: SELECT sum(l_extendedprice * l_discount) as revenue FROM lineitem WHERE l_shipdate >= DATE '1995-05-12' AND l_shipdate < DATE '1995-05-12' + INTERVAL ... 
+📊 Stats: Time=124.01ms | Cost=169823.67 | Method=Aggregate -> Gather
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 2 (10 SELECT) | Query #9 [SELECT] ---
+SQL: SELECT l_orderkey, sum(l_extendedprice * (1 - l_discount)) as revenue, o_orderdate, o_shippriority FROM customer, orders, lineitem WHERE c_mktsegment ... 
+📊 Stats: Time=160.00ms | Cost=199349.78 | Method=Limit -> Sort
+ℹ️  Meta: Tables=['customer', 'orders', 'lineitem'] | JoinCount=2
+   -> customer: 150,000 rows, 31 MB
+   -> orders: 1,500,000 rows, 236 MB
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 2 (10 SELECT) | Query #10 [SELECT] ---
+SQL: SELECT l_returnflag, l_linestatus, sum(l_quantity) as sum_qty, sum(l_extendedprice) as sum_base_price, sum(l_extendedprice * (1 - l_discount)) as sum_... 
+📊 Stats: Time=824.95ms | Cost=229753.73 | Method=Aggregate -> Gather Merge
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 3 (10 DML) | Query #1 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 578954 AND l_linenumber = 3;... 
+📊 Stats: Time=0.15ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 3 (10 DML) | Query #2 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 615630 AND l_linenumber = 2;... 
+📊 Stats: Time=0.09ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 3 (10 DML) | Query #3 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 220628 AND l_linenumber = 1;... 
+📊 Stats: Time=0.09ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 3 (10 DML) | Query #4 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 877693 AND l_linenumber = 1;... 
+📊 Stats: Time=0.08ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 3 (10 DML) | Query #5 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 179321 AND l_linenumber = 4;... 
+📊 Stats: Time=0.08ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 3 (10 DML) | Query #6 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 1060890 AND l_linenumber = 3;... 
+📊 Stats: Time=0.08ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 3 (10 DML) | Query #7 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 36561 AND l_linenumber = 2;... 
+📊 Stats: Time=0.07ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 3 (10 DML) | Query #8 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 1433406 AND l_linenumber = 1;... 
+📊 Stats: Time=0.06ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 3 (10 DML) | Query #9 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 478399 AND l_linenumber = 2;... 
+📊 Stats: Time=0.06ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------
+--- Set 3 (10 DML) | Query #10 [UPDATE] ---
+SQL: UPDATE lineitem SET l_quantity = l_quantity WHERE l_orderkey = 1096127 AND l_linenumber = 4;... 
+📊 Stats: Time=0.06ms | Cost=0 | Method=UPDATE (Heap Access)
+ℹ️  Meta: Tables=['lineitem'] | JoinCount=0
+   -> lineitem: 6,001,009 rows, 1006 MB
+--------------------------------------------------

@@ -1,0 +1,101 @@
+--- TPC-H IS YUKU LOGU (10 SORGU) ---
+Tarih: 2025-12-08 18:51:23
+==================================================
+
+--- SORGU #1 [Tip: SELECT] ---
+-- QUERY: Q6 (Scan Heavy)
+        SELECT sum(l_extendedprice * l_discount) as revenue
+        FROM lineitem
+        WHERE l_shipdate >= DATE '1997-09-02'
+          AND l_shipdate < DATE '1997-09-02' + INTERVAL '1 year'
+          AND l_discount BETWEEN 0.04 - 0.01 AND 0.04 + 0.01
+          AND l_quantity < 27;
+------------------------------
+
+--- SORGU #2 [Tip: SELECT] ---
+-- QUERY: Q1 (Aggregation Heavy)
+        SELECT l_returnflag, l_linestatus, sum(l_quantity) as sum_qty,
+               sum(l_extendedprice) as sum_base_price,
+               sum(l_extendedprice * (1 - l_discount)) as sum_disc_price,
+               sum(l_extendedprice * (1 - l_discount) * (1 + l_tax)) as sum_charge,
+               avg(l_quantity) as avg_qty, avg(l_extendedprice) as avg_price,
+               avg(l_discount) as avg_disc, count(*) as count_order
+        FROM lineitem
+        WHERE l_shipdate <= date '1998-12-01' - integer '103'
+        GROUP BY l_returnflag, l_linestatus
+        ORDER BY l_returnflag, l_linestatus;
+------------------------------
+
+--- SORGU #3 [Tip: SELECT] ---
+-- QUERY: Q6 (Scan Heavy)
+        SELECT sum(l_extendedprice * l_discount) as revenue
+        FROM lineitem
+        WHERE l_shipdate >= DATE '1993-11-17'
+          AND l_shipdate < DATE '1993-11-17' + INTERVAL '1 year'
+          AND l_discount BETWEEN 0.06 - 0.01 AND 0.06 + 0.01
+          AND l_quantity < 23;
+------------------------------
+
+--- SORGU #4 [Tip: SELECT] ---
+-- QUERY: Q1 (Aggregation Heavy)
+        SELECT l_returnflag, l_linestatus, sum(l_quantity) as sum_qty,
+               sum(l_extendedprice) as sum_base_price,
+               sum(l_extendedprice * (1 - l_discount)) as sum_disc_price,
+               sum(l_extendedprice * (1 - l_discount) * (1 + l_tax)) as sum_charge,
+               avg(l_quantity) as avg_qty, avg(l_extendedprice) as avg_price,
+               avg(l_discount) as avg_disc, count(*) as count_order
+        FROM lineitem
+        WHERE l_shipdate <= date '1998-12-01' - integer '85'
+        GROUP BY l_returnflag, l_linestatus
+        ORDER BY l_returnflag, l_linestatus;
+------------------------------
+
+--- SORGU #5 [Tip: SELECT] ---
+-- QUERY: Q1 (Aggregation Heavy)
+        SELECT l_returnflag, l_linestatus, sum(l_quantity) as sum_qty,
+               sum(l_extendedprice) as sum_base_price,
+               sum(l_extendedprice * (1 - l_discount)) as sum_disc_price,
+               sum(l_extendedprice * (1 - l_discount) * (1 + l_tax)) as sum_charge,
+               avg(l_quantity) as avg_qty, avg(l_extendedprice) as avg_price,
+               avg(l_discount) as avg_disc, count(*) as count_order
+        FROM lineitem
+        WHERE l_shipdate <= date '1998-12-01' - integer '113'
+        GROUP BY l_returnflag, l_linestatus
+        ORDER BY l_returnflag, l_linestatus;
+------------------------------
+
+--- SORGU #6 [Tip: UPDATE] ---
+-- QUERY: UPDATE (Write Cost)
+        UPDATE lineitem
+        SET l_quantity = l_quantity
+        WHERE l_orderkey = 925057 AND l_linenumber = 3;
+------------------------------
+
+--- SORGU #7 [Tip: UPDATE] ---
+-- QUERY: UPDATE (Write Cost)
+        UPDATE lineitem
+        SET l_quantity = l_quantity
+        WHERE l_orderkey = 572767 AND l_linenumber = 2;
+------------------------------
+
+--- SORGU #8 [Tip: UPDATE] ---
+-- QUERY: UPDATE (Write Cost)
+        UPDATE lineitem
+        SET l_quantity = l_quantity
+        WHERE l_orderkey = 743755 AND l_linenumber = 4;
+------------------------------
+
+--- SORGU #9 [Tip: UPDATE] ---
+-- QUERY: UPDATE (Write Cost)
+        UPDATE lineitem
+        SET l_quantity = l_quantity
+        WHERE l_orderkey = 1031988 AND l_linenumber = 3;
+------------------------------
+
+--- SORGU #10 [Tip: UPDATE] ---
+-- QUERY: UPDATE (Write Cost)
+        UPDATE lineitem
+        SET l_quantity = l_quantity
+        WHERE l_orderkey = 232880 AND l_linenumber = 3;
+------------------------------
+
