@@ -30,7 +30,7 @@ else:
     META_FEATURES = "meta_features_sf1.pkl"
     META_LABELS = "meta_labels_sf1.pkl"
     # SF=1'de indeksin gerçekten değmesi için %10 iyileşme bekleyelim
-    IMPROVEMENT_THRESHOLD = 1.00
+    IMPROVEMENT_THRESHOLD = 0.90
 
 # Aday İndeks Listesi (Tüm scriptler ortak kullansın)
 CANDIDATE_INDEXES = [
