@@ -1,7 +1,7 @@
 # --- PROJE KONFİGÜRASYONU ---
 
 # ÖLÇEK FAKTÖRÜ (1 veya 10)
-SCALE_FACTOR = 10 
+SCALE_FACTOR = 10
 
 # EĞİTİM VERİSİ SAYISI (Kaç farklı sorgu üretilecek?)
 # SF=10 için 50-100 arası idealdir (süre açısından).
@@ -22,7 +22,7 @@ if SCALE_FACTOR == 10:
     META_FEATURES = "meta_features_sf10.pkl"
     META_LABELS = "meta_labels_sf10.pkl"
     # SF=10'da %5 iyileşme bile kabul edilir (disk I/O kazancı)
-    IMPROVEMENT_THRESHOLD = 0.95 
+    IMPROVEMENT_THRESHOLD = 1.00
 else:
     DB_NAME = "tpch_db"
     DATA_FILE = "training_data_sf1.csv"
@@ -30,7 +30,7 @@ else:
     META_FEATURES = "meta_features_sf1.pkl"
     META_LABELS = "meta_labels_sf1.pkl"
     # SF=1'de indeksin gerçekten değmesi için %10 iyileşme bekleyelim
-    IMPROVEMENT_THRESHOLD = 0.90
+    IMPROVEMENT_THRESHOLD = 1.00
 
 # Aday İndeks Listesi (Tüm scriptler ortak kullansın)
 CANDIDATE_INDEXES = [

@@ -80,7 +80,7 @@ def main():
     idx_map = {f"label_{x[0]}": x for x in config.CANDIDATE_INDEXES}
 
     for i, prob_array in enumerate(probs):
-        if prob_array[0][1] > 0.4: # %40 eşik
+        if prob_array[0][1] > 0.25: # %25 eşik
             label_name = labels_col[i]
             if label_name in idx_map:
                 recs.append(idx_map[label_name])
