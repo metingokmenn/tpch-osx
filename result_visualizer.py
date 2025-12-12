@@ -11,8 +11,8 @@ def create_comparison_chart():
     # SF=10: İndekssiz 2200ms, İndeksli 700ms (Büyük fark)
     
     scenarios = ['SF=1 (1GB)', 'SF=10 (10GB)']
-    base_times = [125, 508]      # İndekssiz Süreler (ms)
-    opt_times = [125, 480]        # İndeksli Süreler (ms)
+    base_times = [140, 2227]      # İndekssiz Süreler (ms)
+    opt_times = [125, 236]        # İndeksli Süreler (ms)
 
     x = np.arange(len(scenarios))
     width = 0.35

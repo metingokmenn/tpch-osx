@@ -1,0 +1,7 @@
+psycopg2-binary
+pandas
+scikit-learn
+xgboost
+matplotlib
+seaborn
+joblib

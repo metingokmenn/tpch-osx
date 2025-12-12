@@ -12,12 +12,16 @@ class WorkloadGenerator:
         return self.start_date + timedelta(days=random_days)
 
     def generate_q6(self):
-        # Q6: Geniş Aralık (1 Yıl) - SF=1'de Seq Scan yapar, SF=10'da Index olabilir.
+        # GÜNCELLEME: '1 month' yerine '5 days' yaptık.
+        # Bu, "Needle in a haystack" (Samanlıkta iğne) etkisi yaratır.
         rand_date = self.get_random_date()
         rand_qty = random.randint(20, 30)
         rand_discount = round(random.uniform(0.02, 0.09), 2)
-        sql = f"""SELECT sum(l_extendedprice * l_discount) as revenue FROM lineitem WHERE l_shipdate >= DATE '{rand_date}' AND l_shipdate < DATE '{rand_date}' + INTERVAL '1 year' AND l_discount BETWEEN {rand_discount} - 0.01 AND {rand_discount} + 0.01 AND l_quantity < {rand_qty};"""
-        meta = {"tables": ["lineitem"], "filter_range_days": 365, "join_count": 0, "query_type_label": "SCAN_HEAVY"}
+        
+        # Filtreyi daralttık
+        sql = f"""SELECT sum(l_extendedprice * l_discount) as revenue FROM lineitem WHERE l_shipdate >= DATE '{rand_date}' AND l_shipdate < DATE '{rand_date}' + INTERVAL '5 days' AND l_discount BETWEEN {rand_discount} - 0.01 AND {rand_discount} + 0.01 AND l_quantity < {rand_qty};"""
+        
+        meta = {"tables": ["lineitem"], "filter_range_days": 5, "join_count": 0, "query_type_label": "SCAN_HEAVY"}
         return sql.strip(), meta
 
     def generate_q1(self):

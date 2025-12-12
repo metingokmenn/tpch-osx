@@ -6,8 +6,14 @@ import os
 from workload import WorkloadGenerator
 import config # YENİ
 
-def measure_time(conn, sql):
+def measure_time(conn, sql, force_index=False):
     cur = conn.cursor()
+    
+    if force_index:
+        cur.execute("SET enable_seqscan = OFF;")
+    else:
+        cur.execute("SET enable_seqscan = ON;")
+        
     start = time.time()
     cur.execute(sql)
     elapsed = (time.time() - start) * 1000
@@ -86,36 +92,40 @@ def main():
                 recs.append(idx_map[label_name])
 
     if not recs:
-        print("❌ Öneri Yok (Mevcut yapı yeterli).")
+        print("❌ Öneri yok.")
     else:
-        print(f"✅ Tavsiye: {[r[0] for r in recs]}")
+        print(f"✅ Önerilen: {[r[0] for r in recs]}")
         
-        # Test
-        print("   -> Base ölçülüyor...", end="")
-        base = measure_time(conn, sql)
+        # 1. BASELINE (İNDEKSSİZ)
+        print("   -> İndekssiz (Doğal) ölçülüyor...", end="")
+        base = measure_time(conn, sql, force_index=False)
         print(f" {base:.0f} ms")
 
+        # 2. İNDEKSLERİ KUR
         print("   -> İndeksler kuruluyor...")
         for r in recs:
-            cur = conn.cursor()
-            cur.execute("SET statement_timeout = 0;")
-            cur.execute(f"CREATE INDEX IF NOT EXISTS {r[0]} ON {r[1]} ({r[2]})")
-            cur.close()
+            curr = conn.cursor()
+            curr.execute("SET statement_timeout = 0;")
+            curr.execute(f"CREATE INDEX IF NOT EXISTS {r[0]} ON {r[1]} ({r[2]})")
+            curr.close()
         
-        print("   -> Optimize süre ölçülüyor...", end="")
-        opt = measure_time(conn, sql)
+        # 3. OPTIMIZED (İNDEKSLİ)
+        # Burada force_index=True yapıyoruz!
+        print("   -> İndeksli (Zorlanmış) ölçülüyor...", end="")
+        opt = measure_time(conn, sql, force_index=True)
         print(f" {opt:.0f} ms")
 
-        # Temizlik
+        # 4. TEMİZLİK
         for r in recs:
-            cur = conn.cursor()
-            cur.execute(f"DROP INDEX IF EXISTS {r[0]}")
-            cur.close()
+            curr = conn.cursor()
+            curr.execute(f"DROP INDEX IF EXISTS {r[0]}")
+            curr.close()
 
+        # SONUÇ HESAPLAMA
         if base > opt:
             print(f"🚀 HIZLANMA: %{((base-opt)/base)*100:.1f}")
         else:
-            print("⚠️ Hızlanma yok.")
+            print(f"⚠️ Hızlanma yok (Base: {base:.0f} vs Opt: {opt:.0f})")
 
     conn.close()
 
